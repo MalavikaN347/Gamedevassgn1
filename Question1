@@ -1,0 +1,21 @@
+#make a sorting algorithm basically such that a sequence inputed can be arranged according to the given parameter in the question
+def swap(x,y,list):
+    temp=list[y]
+    list[y]=list[x]
+    list[x]=temp
+    
+
+
+
+
+
+n=int(input("Length of string."))
+str=input()
+list=str.split(',')
+for i in range(0,n-1):
+    for j in range(i+1,n):
+        if(list[i]>list[j]):
+            swap(i,j,list)
+
+for i in list:
+    print(i,end=" ")
