@@ -1,0 +1,50 @@
+def minimax(depth, nodeindex, player, evals):
+# //if r is row number of Node, index of that row varies from 2^(r-1)-1 to 2^r - 2
+# //node index is in gp. Ex:2+4+8=2((2^r-1)-1)-(2^r-1)+1=2^r-1-2+1
+    #print(f"\nnodeindex={nodeindex}")
+    #print(f"depth={depth}")
+    row=5-depth
+    difference=nodeindex-((2**(row-1))-1)
+    if (depth==1):
+        # print(nodeindex)
+        #print(evals[nodeindex-7])   \
+        
+
+        return evals[nodeindex-7]
+        
+    
+    else:
+        if (player):
+            maxeval=-1
+            for i in range(0,2):
+                #print(f"value of i={i}")
+                if(nodeindex==0):
+                    child=i+1
+                else:
+                    child=(2**(row)-1)+2*(difference)+i
+                
+                #print(f"child={child}")
+                eval=minimax(depth-1,child,False,evals)
+                maxeval=max(maxeval,eval)
+                return maxeval
+
+        else:
+            mineval=1000000
+            for i in range(0,2):
+                #print(f"value of i={i}")
+                if(nodeindex==0):
+                    child=i+1
+                else:
+                    child=(2**(row)-1)+2*(difference)+i
+                #print(f"child={child}")
+                eval=minimax(depth-1,child,True,evals)
+                mineval=min(mineval,eval)
+                return mineval
+
+
+    
+
+
+evals = [3, 5, 2, 9, 12, 5, 23, 23]
+res = minimax(4, 0, True, evals)
+print(f"The optimal value is: {res}")
